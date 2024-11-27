@@ -29,7 +29,6 @@ blueM.Anchored = true
 blueM.Shape = Enum.PartType.Block
 blueM.BrickColor = BrickColor.new("Cyan")
 blueM.Size = Vector3.new(15, 7, 5)
-	
 uis.InputBegan:Connect(function(Key, gpe) 
 	if gpe then end
 	if Key.KeyCode == Enum.KeyCode.P then
