@@ -8,6 +8,7 @@ local hum = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
 local humRP = char.HumanoidRootPart
 local redF = Instance.new("Folder", script_rs_folder)
 local redM = Instance.new("Part")
+local currentHealth = hum.Health
 hum.MaxHealth = 1000
 hum.Health = hum.MaxHealth
 script_rs_folder.Name = "Go/Kuna"
@@ -41,14 +42,15 @@ uis.InputBegan:Connect(function(Key, gpe)
 end)
 hum.StateChanged:Connect(function(_oldState, newState)
 	if newState == Enum.HumanoidStateType.Dead then
+		hum.Health = hum.MaxHealth
 		hum:ChangeState(Enum.HumanoidStateType.None)
 		hum.Health = hum.MaxHealth
 		hum:ChangeState(Enum.HumanoidStateType.None)
 	end
 end)
-while true do
-	local currentHealth = hum.Health
-	if hum.Health ~= currentHealth
+
+game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):GetPropertyChangedSignal("Health"):Connect(function()
+	if hum.Health < currentHealth then
 		local found
 		local last = math.huge
 		for _,plyr in pairs(game.Players:GetPlayers()) do
@@ -61,3 +63,4 @@ while true do
 		humRP.Position = found.HumanoidRootPart.Position + Vector3.new(1,1,1)
 		humRP.Rotation = humRP.Rotation + Vector3.new(0, 180, 0)
 	end
+end)
