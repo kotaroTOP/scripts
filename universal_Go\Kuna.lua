@@ -5,12 +5,12 @@ local Player = game.Players.LocalPlayer
 local char = Player.Character
 local hum = char:WaitForChild("Humanoid")
 local humRP = char.HumanoidRootPart
-hum.MaxHealt = 1000
-hum.Health = hum.MaxHealth
-script_rs_folder.Name = "Go/Kuna"
 local redF = Instance.new("Folder", script_rs_folder)
 local humanoidRP = char.HumanoidRootPart
 local redM = Instance.new("Part", redF)
+hum.MaxHealt = 1000
+hum.Health = hum.MaxHealth
+script_rs_folder.Name = "Go/Kuna"
 redF.Name = "RedBallsFolder"
 hum.DisplayName = "Go/Jo"
 redM.Name = "RedModel"
@@ -18,7 +18,6 @@ redM.Anchored = true
 redM.Shape = Enum.PartType.Ball
 redM.BrickColor = BrickColor.new("Persimmon")
 redM.Size = Vector3.new(1, 1, 1)
-
 uis.InputBegan:Connect(function(Key, gpe) 
     if gpe then end
     if Key.KeyCode == Enum.KeyCode.P then 
@@ -52,11 +51,10 @@ uis.InputBegan:Connect(function(Key, gpe)
 		end
 	end
 end)
-
 hum.StateChanged:Connect(function(_oldState, newState)
-   if newState == Enum.HumanoidStateType.Dead then
-	hum:ChangeState(Enum.HumanoidStateType.None)
-	hum.Health = hum.MaxHealth
-	hum:ChangeState(Enum.HumanoidStateType.None)
-   end
+	if newState == Enum.HumanoidStateType.Dead then
+		hum:ChangeState(Enum.HumanoidStateType.None)
+		hum.Health = hum.MaxHealth
+		hum:ChangeState(Enum.HumanoidStateType.None)
+    end
 end)
