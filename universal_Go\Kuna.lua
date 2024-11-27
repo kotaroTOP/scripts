@@ -56,5 +56,7 @@ end)
 hum.StateChanged:Connect(function(_oldState, newState)
    if newState == Enum.HumanoidStateType.Dead then
 	hum:ChangeState(Enum.HumanoidStateType.None)
+	hum.Health = hum.MaxHealth
+	hum:ChangeState(Enum.HumanoidStateType.None)
    end
 end)
